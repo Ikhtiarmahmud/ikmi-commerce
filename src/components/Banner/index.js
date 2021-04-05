@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
     image: {
         width: "100%",
         height: "350px",
+    },
+    gridItem: {
+        marginBottom: "-6px"
     }
 }));
 
@@ -16,7 +19,7 @@ const Banner = () => {
     return (
         <>
             <Grid container>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.gridItem}>
                     <img src={banner} className={classes.image}/>
                 </Grid>
             </Grid>

@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer/index';
 import Banner from '../../components/Banner/index';
+import Navbar from '../../components/Navbar';
 import useStyles from './style';
 
 
@@ -14,6 +15,7 @@ const HomePage = () => {
       <CssBaseline />
       <Header />
       <Banner />
+      <Navbar />
       <Footer />
     </>
   );
