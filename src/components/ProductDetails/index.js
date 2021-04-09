@@ -10,6 +10,7 @@ import productImage from '../../assets/images/39.jpg';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import useStyles from './style';
+import DetailTab from './../Tab/index';
 
 
 const ProductDetails = () => {
@@ -89,6 +90,9 @@ const ProductDetails = () => {
                              <Button className={classes.cartBtn} variant="contained">ADD TO CART</Button>
                         </Grid>
                     </Grid>
+                </Grid>
+                <Grid item xs={12} md={12} sm={12}>
+                    <DetailTab />
                 </Grid>
             </Grid>
         </>
