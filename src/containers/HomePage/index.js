@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/index';
 import Banner from '../../components/Banner/index';
 import Navbar from '../../components/Navbar';
 import Product from '../../components/Product';
+import ProductDetails from '../../components/ProductDetails'
 import useStyles from './style';
 
 
@@ -17,9 +18,7 @@ const HomePage = () => {
       <Header />
       <Banner />
       <Navbar />
-      <Product />
-      <Product />
-      <Product />
+      <ProductDetails />
       <Footer />
     </>
   );
