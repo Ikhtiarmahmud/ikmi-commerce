@@ -25,11 +25,18 @@ export const useStyles = makeStyles((theme) => ({
             textTransform: "uppercase",
             "& button": {
 
+            },
+            "& a": {
+                textDecoration: "none",
+                color: "#999",
             }
         },
         "& li:hover": {
             color: "#fff",
-            backgroundColor: "#a8b324;"
+            backgroundColor: "#a8b324",
+            "& a": {
+                color: "#fff",
+            }
         }
     },
     categoryMenu: {

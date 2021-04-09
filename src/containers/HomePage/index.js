@@ -1,12 +1,14 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer/index';
-import Banner from '../../components/Banner/index';
+import Footer from '../../components/Footer';
+import Banner from '../../components/Banner';
 import Navbar from '../../components/Navbar';
 import Product from '../../components/Product';
 import ProductDetails from '../../components/ProductDetails'
+import PageNotFound from '../../components/PageNotFound';
 import useStyles from './style';
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 
 const HomePage = () => {
@@ -15,11 +17,27 @@ const HomePage = () => {
   return (
     <>
       <CssBaseline />
-      <Header />
-      <Banner />
-      <Navbar />
-      <ProductDetails />
-      <Footer />
+      <Router>
+        <Header />
+        <Banner />
+        <Navbar />
+        <Switch>
+            <Route exact path="/">
+                <Product />
+            </Route>
+
+            <Route exact path="/details">
+              <ProductDetails />
+            </Route>
+
+            <Route exact path="/404">
+              <PageNotFound />
+            </Route>
+
+            <Route path={'*'} render={() => <Redirect to={'/404'} />} />
+        </Switch>
+        <Footer />
+    </Router>
     </>
   );
 }
