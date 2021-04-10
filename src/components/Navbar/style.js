@@ -13,6 +13,10 @@ export const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2)
     },
     item: {
+        "& a": {
+            textDecoration: "none",
+            color: "#999",
+        },
         "& li": {
             color: "#999",
             lineHeight: "38px",
@@ -22,14 +26,7 @@ export const useStyles = makeStyles((theme) => ({
             margin: "0",
             fontSize: "14px",
             textDecoration: "none",
-            textTransform: "uppercase",
-            "& button": {
-
-            },
-            "& a": {
-                textDecoration: "none",
-                color: "#999",
-            }
+            textTransform: "uppercase",            
         },
         "& li:hover": {
             color: "#fff",

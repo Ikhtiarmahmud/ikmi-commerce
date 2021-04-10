@@ -12,12 +12,18 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import useStyles from './style';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const Product = () => {
     const classes = useStyles();
+    const history = useHistory();
+    const dispatch = useDispatch();
     const products = useSelector((state) => state.productStore.products);
 
+    const getProductDetails = (id) => {
+        history.push(`/details/${id}`);
+    }
 
     return (
         <>
@@ -79,7 +85,7 @@ const Product = () => {
                                                 }
                                                 gutterBottom
                                                 variant="subtitle2"
-                                                align="center">
+                                                align="center" onClick={() => getProductDetails(product.id)}>
                                                 ADD TO CART
                                                 <span><ArrowForwardIosIcon/><ArrowForwardIosIcon/></span>
                                             </Typography>

@@ -21,7 +21,7 @@ const Navbar = () => {
                         className={
                             classes.item
                         }>
-                        <MenuItem><Link to="/">Home</Link></MenuItem>
+                        <Link to="/"><MenuItem>Home</MenuItem></Link>
                         <MenuItem>Shop</MenuItem>
                         <MenuItem>Category</MenuItem>
                         <MenuItem>Blog</MenuItem>

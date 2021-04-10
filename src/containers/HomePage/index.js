@@ -33,7 +33,7 @@ const HomePage = () => {
                 <Product />
             </Route>
 
-            <Route exact path="/details">
+            <Route exact path="/details/:id">
               <ProductDetails />
             </Route>
 

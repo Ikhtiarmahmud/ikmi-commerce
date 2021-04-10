@@ -5,19 +5,26 @@ export const StoreProducts = () => async(dispatch, getStore) => {
 
     const allProducts = await axios.get('https://fakestoreapi.com/products');
 
-    dispatch(storeAllProducts(allProducts.data))    
+    dispatch(setAllProducts(allProducts.data))    
 }
 
-export const StoreSelectedProduct = (data) => {    
+export const StoreSelectedProduct = (id) => async(dispatch, getStore) => {   
+    
+    const product = await axios.get(`https://fakestoreapi.com/products/${id}`);
+
+    dispatch(setSelectedProduct(product.data));
+}
+
+const setAllProducts = (data) => {
     return {
-        type: STORE_SELECTED_PRODUCT,
+        type: STORE_PRODUCTS,
         payload: data
     } 
 }
 
-const storeAllProducts = (data) => {
+const setSelectedProduct = (data) => {
     return {
-        type: STORE_PRODUCTS,
+        type: STORE_SELECTED_PRODUCT,
         payload: data
     } 
 }
