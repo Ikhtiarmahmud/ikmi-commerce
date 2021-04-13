@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -43,27 +42,26 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-      padding: "20px 52px"
+      padding: "20px 52px",
+      "& div": {
+        padding: "10px 80px"
+      }
   },
   header: {
       boxShadow: "none",
       backgroundColor: "#fff",
       borderBottom: "1px solid",
       borderBottomColor: "#ebebeb"
-  }
+  },
 }));
 
-const DetailTab = () => {
+const DetailTab = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
   };
 
   return (
@@ -75,7 +73,6 @@ const DetailTab = () => {
           indicatorColor="primary"
           textColor="primary"
           centered
-        //   variant="fullWidth"
           aria-label="full width tabs example"
         >
           <Tab label="Description" {...a11yProps(0)} />
@@ -84,13 +81,13 @@ const DetailTab = () => {
         </Tabs>
       </AppBar>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
+          {props.description}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+          No reviews available
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+          No discussion available
         </TabPanel>
     </div>
   );

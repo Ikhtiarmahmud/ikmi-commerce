@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Typography,
     CardMedia,
@@ -11,10 +11,21 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import useStyles from './style';
 import DetailTab from './../Tab/index';
+import { useParams, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { StoreSelectedProduct } from './../../containers/HomePage/action';
 
 
 const ProductDetails = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const params = useParams();
+
+    useEffect(() => {
+        dispatch(StoreSelectedProduct(params.id));
+    }, []);
+
+    const product = useSelector((state) => state.productStore.selectedProduct);
 
     return (
         <>
@@ -33,7 +44,7 @@ const ProductDetails = () => {
                         <img className={
                                 classes.img
                             }
-                            src={productImage}/>
+                            src={product.image}/>
                     </CardMedia>
                 </Grid>
                 <Grid item
@@ -54,7 +65,7 @@ const ProductDetails = () => {
                         gutterBottom
                         variant="h3"
                         align="left">
-                        Heavy Duty Paper Computer
+                        {product.title}
                     </Typography>
                     <Typography className={
                             classes.star
@@ -74,10 +85,10 @@ const ProductDetails = () => {
                         gutterBottom
                         variant="subtitle1"
                         align="left">
-                        $ 600
+                        $ {product.price}
                     </Typography>
                     <Typography gutterBottom variant="subtitle1" align="left">
-                        Vel atque et quis excepturi id nihil eligendi. Id illo fuga distinctio nesciunt qui sunt. Aut ullam tenetur ea atque.
+                        Get 50% offer from your first order
                     </Typography>
                     <Grid style={{marginTop:"2rem"}} container
                             direction="row"
@@ -92,7 +103,7 @@ const ProductDetails = () => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={12} sm={12}>
-                    <DetailTab />
+                    <DetailTab description={product.description}/>
                 </Grid>
             </Grid>
         </>

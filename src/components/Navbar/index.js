@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useStyles } from './style';
+import { Link} from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -20,7 +21,7 @@ const Navbar = () => {
                         className={
                             classes.item
                         }>
-                        <MenuItem>Home</MenuItem>
+                        <Link to="/"><MenuItem>Home</MenuItem></Link>
                         <MenuItem>Shop</MenuItem>
                         <MenuItem>Category</MenuItem>
                         <MenuItem>Blog</MenuItem>
