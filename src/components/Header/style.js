@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
       appearance: "none",
       borderRadius: ".25rem",
       transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out"
+    },
+    routerLink: {
+      textDecoration: "none",
+      color: "black",
     }
 }));
 

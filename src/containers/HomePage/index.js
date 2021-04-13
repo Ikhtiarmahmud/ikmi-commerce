@@ -7,6 +7,7 @@ import Navbar from '../../components/Navbar';
 import Product from '../../components/Product';
 import ProductDetails from '../../components/ProductDetails'
 import PageNotFound from '../../components/PageNotFound';
+import Account from '../../components/Account';
 import useStyles from './style';
 import { useDispatch } from 'react-redux';
 import { StoreProducts } from './action';
@@ -39,6 +40,10 @@ const HomePage = () => {
 
             <Route exact path="/404">
               <PageNotFound />
+            </Route>
+
+            <Route exact path="/account">
+              <Account />
             </Route>
 
             <Route path={'*'} render={() => <Redirect to={'/404'} />} />

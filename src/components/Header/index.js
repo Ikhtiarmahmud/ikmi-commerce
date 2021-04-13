@@ -7,8 +7,21 @@ import useStyles from './style';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Link as RouteLink } from 'react-router-dom';
 const Header = () => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     const classes = useStyles();
 
     return (<>
@@ -45,7 +58,20 @@ const Header = () => {
                         className={
                             classes.link
                     }>
-                        <PermIdentityIcon className={classes.font30}/>
+                        <Button style={{minWidth: '0', padding: '0', marginTop: '-12px'}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                            <PermIdentityIcon className={classes.font30}/>
+                        </Button>
+                        <Menu style={{top: "55px", left:"-70px"}}
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem style={{width:"130px"}} onClick={handleClose}>Profile</MenuItem>
+                            <RouteLink className={classes.routerLink} to="/account"><MenuItem onClick={handleClose}>Login</MenuItem></RouteLink>
+                        </Menu>
+                       
                     </Link>
                 </nav>
             </Toolbar>
