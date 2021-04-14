@@ -10,7 +10,9 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Link as RouteLink } from 'react-router-dom';
+import { Link as RouteLink, useHistory } from 'react-router-dom';
+import { isAuthenticated, Logout } from '../../utils/auth';
+
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -23,6 +25,13 @@ const Header = () => {
     };
 
     const classes = useStyles();
+    const history = useHistory();
+
+    const submitLogout = () => {
+        Logout();
+        handleClose();
+        history.push('/account');
+    }
 
     return (<>
         <AppBar position="static"
@@ -61,15 +70,23 @@ const Header = () => {
                         <Button style={{minWidth: '0', padding: '0', marginTop: '-12px'}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                             <PermIdentityIcon className={classes.font30}/>
                         </Button>
-                        <Menu style={{top: "55px", left:"-70px"}}
+                        <Menu style={{top: "65px", left:"-70px"}}
                             id="simple-menu"
                             anchorEl={anchorEl}
                             keepMounted
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
-                            <MenuItem style={{width:"130px"}} onClick={handleClose}>Profile</MenuItem>
-                            <RouteLink className={classes.routerLink} to="/account"><MenuItem onClick={handleClose}>Login</MenuItem></RouteLink>
+                            {
+                                isAuthenticated() &&  <div>
+                                    <RouteLink className={classes.routerLink} to="/profile"><MenuItem style={{width:"130px"}} onClick={handleClose}>Profile</MenuItem></RouteLink>
+                                    <MenuItem onClick={submitLogout} style={{width:"130px"}}>Logout</MenuItem>
+                                </div>
+                            }
+                            {
+                                !isAuthenticated() && <RouteLink className={classes.routerLink} to="/account"><MenuItem style={{width:"130px"}} onClick={handleClose}>Login</MenuItem></RouteLink>
+                            }
+                           
                         </Menu>
                        
                     </Link>

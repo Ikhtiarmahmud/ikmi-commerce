@@ -4,14 +4,11 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Banner from '../../components/Banner';
 import Navbar from '../../components/Navbar';
-import Product from '../../components/Product';
-import ProductDetails from '../../components/ProductDetails'
-import PageNotFound from '../../components/PageNotFound';
-import Account from '../Account';
 import useStyles from './style';
 import { useDispatch } from 'react-redux';
 import { StoreProducts } from './action';
-import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import Routes from '../../utils/routes';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 
 const HomePage = () => {
@@ -29,29 +26,7 @@ const HomePage = () => {
         <Header />
         <Banner />
         <Navbar />
-        <Switch>
-            <Route exact path="/">
-                <Product />
-            </Route>
-
-            <Route exact path="/details/:id">
-              <ProductDetails />
-            </Route>
-
-            <Route exact path="/404">
-              <PageNotFound />
-            </Route>
-
-            <Route exact path="/account">
-              <Account />
-            </Route>
-
-            <Route exact path="/profile">
-                <p style={{padding: "50px"}}>This is your profile</p>
-            </Route>
-
-            <Route path={'*'} render={() => <Redirect to={'/404'} />} />
-        </Switch>
+        <Routes />
         <Footer />
     </Router>
     </>

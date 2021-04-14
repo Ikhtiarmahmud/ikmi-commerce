@@ -3,12 +3,16 @@ import { Grid } from '@material-ui/core';
 import useStyles from './style';
 import Register from '../../components/Register';
 import Login from '../../components/Login';
+import {useHistory} from 'react-router-dom';
+import {isAuthenticated} from '../../utils/auth';
 
 const Account = () => {
+    const history = useHistory();
     const classes = useStyles();
 
     return (
         <>
+        { isAuthenticated() && history.push('/profile') }
             <Grid container
                 className={
                     classes.grid
