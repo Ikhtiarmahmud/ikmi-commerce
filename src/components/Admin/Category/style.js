@@ -14,6 +14,23 @@ const useStyles = makeStyles({
           color: "#a8b324"
       }
   },
+  cartBtn: {
+    backgroundColor: "#14472e",
+    color: "white",
+    // padding: 
+  },
+  link: {
+    textDecoration: "none"
+  },
+  inputBox: {
+    padding: "10px",
+    "& input": {
+      width: "330px",
+    },
+    "& div": {
+      marginBottom: "10px"
+    }
+  }
   });
 
 export default useStyles;
