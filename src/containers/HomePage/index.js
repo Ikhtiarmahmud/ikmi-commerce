@@ -8,7 +8,6 @@ import useStyles from './style';
 import { useDispatch } from 'react-redux';
 import { StoreProducts } from './action';
 import Routes from '../../utils/routes';
-import { BrowserRouter as Router} from 'react-router-dom';
 
 
 const HomePage = () => {
@@ -22,13 +21,11 @@ const HomePage = () => {
   return (
     <>
       <CssBaseline />
-      <Router>
         <Header />
         <Banner />
         <Navbar />
         <Routes />
         <Footer />
-    </Router>
     </>
   );
 }
