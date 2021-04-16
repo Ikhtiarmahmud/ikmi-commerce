@@ -4,22 +4,33 @@ import useStyles from './style';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userSignIn } from '../../containers/Account/action';
+import { BASE_URL } from '../../utils/constants';
 
 const Login = () => {
     const classes = useStyles();
     const history = useHistory();
+    const dispatch = useDispatch();
 
-    const [signInVal, setSignInVal] = useState({ email: null, password: null })
+    const [signInData, setSignInData] = useState({ email: null, password: null })
     const [signInErr, setSignInErr] = useState(false);
     const [signInFail, setSignInFail] = useState(false);
 
     const signIn = () => {
-        if (!signInVal.email || !signInVal.password) {
+        if (!signInData.email || !signInData.password) {
             setSignInErr(true);
         } else {
             setSignInErr(false);
 
-            axios.post('http://localhost:8080/signin', signInVal).then((res) => {
+            // try {
+            //     dispatch(userSignIn(signInData));
+            //     history.push('/profile');
+            // } catch(err) {
+            //     setSignInFail(true);
+            // }
+            
+            axios.post(`${BASE_URL}/signin`, signInData).then((res) => {
                 const { userInfo } = res.data;
                 sessionStorage.setItem('user', userInfo.user);
                 sessionStorage.setItem('token', userInfo.token);
@@ -45,7 +56,7 @@ const Login = () => {
             </Typography>
             <TextField id="standard-search" label="Email" type="search"
                 onChange={
-                    (e) => setSignInVal(state => ({
+                    (e) => setSignInData(state => ({
                         ...state,
                         email: e.target.value
                     }))
@@ -53,7 +64,7 @@ const Login = () => {
             <br /><br />
             <TextField id="standard-password-input" label="Password" type="password" autoComplete="current-password" 
                 onChange={
-                    (e) => setSignInVal(state => ({
+                    (e) => setSignInData(state => ({
                         ...state,
                         password: e.target.value
                     }))
