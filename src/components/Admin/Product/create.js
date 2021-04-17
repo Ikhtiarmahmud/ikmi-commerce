@@ -10,21 +10,20 @@ import {
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
 import { Link } from 'react-router-dom';
-import { StoreCategory } from './action';
 import { useDispatch } from 'react-redux';
 
-const CreateCategory = () => {
+const CreateProduct = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [status, setStatus] = useState();
-    const [categoryData, setCategoryData] = useState({ name: null, description: null})
+    const [productData, setProductData] = useState({})
 
     const SubmitHandler = () => {
-        dispatch(StoreCategory(categoryData))
-            .then(() => {
-                setStatus(true)
-            })
-            .catch(() => setStatus(false))
+        // dispatch(StoreCategory(categoryData))
+        //     .then(() => {
+        //         setStatus(true)
+        //     })
+        //     .catch(() => setStatus(false))
     }
 
     return (
@@ -37,7 +36,7 @@ const CreateCategory = () => {
                     variant="h3"
                     align="left">
                     <RadioButtonUncheckedIcon/>
-                    &nbsp;Add Category
+                    &nbsp;Add Product
                 </Typography>
                 <div style={
                     {padding: "15px"}
@@ -45,7 +44,7 @@ const CreateCategory = () => {
                     <Link className={
                             classes.link
                         }
-                        to="/profile/category">
+                        to="/profile/product">
                         <Button className={
                                 classes.cartBtn
                             }
@@ -57,7 +56,7 @@ const CreateCategory = () => {
             {
                 status === true && <span style={
                     { backgroundColor: "green", padding: "10px", color: "white" }
-                }>Category Added Successfully :) </span>
+                }>Product Added Successfully :) </span>
             }
             {
                 status === false &&  <span style={
@@ -72,13 +71,19 @@ const CreateCategory = () => {
                     classes.inputBox
             }>
                 <div>
-                    <TextField label="name"  onChange={(e) => setCategoryData(state => ({
+                    <TextField label="name" onChange={(e) => setProductData(state => ({
                         ...state,
-                        name: e.target.value
+                        title: e.target.value
                     }))}/>
                 </div>
                 <div>
-                    <TextField label="description" type="search" onChange={(e) => setCategoryData(state => ({
+                    <TextField label="price" onChange={(e) => setProductData(state => ({
+                        ...state,
+                        price: e.target.value
+                    }))}/>
+                </div>
+                <div>
+                    <TextField label="description" onChange={(e) => setProductData(state => ({
                         ...state,
                         description: e.target.value
                     }))}/>
@@ -94,4 +99,4 @@ const CreateCategory = () => {
     );
 }
 
-export default CreateCategory;
+export default CreateProduct;

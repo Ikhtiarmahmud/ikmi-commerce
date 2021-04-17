@@ -31,7 +31,7 @@ const Sidebar = () => {
                         }>
                         <MenuItem onClick={() => loadComponent('dashboard')}>Dashboard</MenuItem>
                         <MenuItem onClick={() => loadComponent('category')}>Category</MenuItem>
-                        <MenuItem>Product</MenuItem>
+                        <MenuItem onClick={() => loadComponent('product')}>Product</MenuItem>
                         <MenuItem>Order</MenuItem>
                         <MenuItem>User</MenuItem>
                     </Grid>

@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from '../../components/Admin/Sidebar';
 import Category from '../../components/Admin/Category';
 import Dashboard from '../../components/Admin/Dashboard';
+import Product from '../../components/Admin/Product';
 import {
     Grid
 } from '@material-ui/core';
@@ -15,6 +16,9 @@ const Profile = () => {
     switch (params.slug) {
         case "category":
             component = (<Category />);
+            break;
+        case "product":
+            component = (<Product />)
             break;
         default:
             component = (<Dashboard />);

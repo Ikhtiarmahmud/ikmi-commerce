@@ -1,6 +1,6 @@
+import { STORE_CATEGORIES } from  './constants';
 import axios from 'axios';
 import { BASE_URL, AUTH_TOKEN } from '../../../utils/constants';
-import { STORE_CATEGORIES } from  './constants';
 
 export const StoreCategoryList = () => async(dispatch, getStore) => {
     const categories = await axios.get(`${BASE_URL}/category`);

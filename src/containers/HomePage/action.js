@@ -11,7 +11,7 @@ export const StoreProducts = () => async(dispatch, getStore) => {
 
 export const StoreSelectedProduct = (id) => async(dispatch, getStore) => {   
     
-    const product = await axios.get(`https://fakestoreapi.com/products/${id}`);
+    const product = await axios.get(`${BASE_URL}/products/${id}`);
 
     dispatch(setSelectedProduct(product.data));
 }
