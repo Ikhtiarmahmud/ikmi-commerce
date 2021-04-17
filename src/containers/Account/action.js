@@ -9,9 +9,9 @@ export const userSignIn = (data) => async (dispatch, getStore) => {
     let response = await axios.post(`${BASE_URL}/signin`, data);
     let { userInfo } = response.data;
 
-    // sessionStorage.setItem('user', userInfo.user);
-    // sessionStorage.setItem('token', userInfo.token);
-    // sessionStorage.setItem('auth', true);
+    sessionStorage.setItem('user', userInfo.user);
+    sessionStorage.setItem('token', userInfo.token);
+    sessionStorage.setItem('auth', true);
 
     return true;
 }

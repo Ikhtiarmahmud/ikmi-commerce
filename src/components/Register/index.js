@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {Typography, TextField, Button} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Typography, TextField, Button } from '@material-ui/core';
 import useStyles from './style';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userSignUp } from '../../containers/Account/action';
 import { BASE_URL } from '../../utils/constants';
@@ -29,31 +29,21 @@ const Register = () => {
         } else {
             setSignUpErr(false);
 
-            // try {
-            //     dispatch(userSignUp());
-            //     setSignUpSuccess(true);
-            // } catch (err) {
-            //     setSignUpFail(true);
-            // }
-
-            axios.post(`${BASE_URL}/signup`, signUpData).then((res) => {
-                setSignUpSuccess(true);
-            }).catch((err) => {
-                console.log(err.message);
-                setSignUpFail(true)
-            })
+            dispatch(userSignUp(signUpData))
+                .then(() => setSignUpSuccess(true))
+                .catch(() => setSignUpFail(true));
         }
     }
 
     return (
         <>
             <Typography className={
-                    classes.title
-                }
+                classes.title
+            }
                 gutterBottom
                 variant="h3"
                 align="left">
-                <RadioButtonUncheckedIcon/>
+                <RadioButtonUncheckedIcon />
                 &nbsp;Register
             </Typography>
             <TextField id="standard-search" label="First Name" type="search"
@@ -62,58 +52,58 @@ const Register = () => {
                         ...state,
                         firstname: e.target.value
                     }))
-                }/>
-            <br/><br/>
+                } />
+            <br /><br />
             <TextField id="standard-search" label="Last Name" type="search"
                 onChange={
                     (e) => setSignUpData(state => ({
                         ...state,
                         lastname: e.target.value
                     }))
-                }/>
-            <br/><br/>
+                } />
+            <br /><br />
             <TextField id="standard-search" label="User Name" type="search"
                 onChange={
                     (e) => setSignUpData(state => ({
                         ...state,
                         username: e.target.value
                     }))
-                }/>
-            <br/><br/>
+                } />
+            <br /><br />
             <TextField id="standard-search" label="Email" type="search"
                 onChange={
                     (e) => setSignUpData(state => ({
                         ...state,
                         email: e.target.value
                     }))
-                }/>
-            <br/><br/>
+                } />
+            <br /><br />
             <TextField id="standard-password-input" label="Password" type="password" autoComplete="current-password"
                 onChange={
                     (e) => setSignUpData(state => ({
                         ...state,
                         password: e.target.value
                     }))
-                }/>
-            <br/>
-            <br/> {
-            signUpErr && <span style={
-                {color: "red"}
-            }>* All field are required</span>
-        }
+                } />
+            <br />
+            <br /> {
+                signUpErr && <span style={
+                    { color: "red" }
+                }>* All field are required</span>
+            }
             {
-            signUpSuccess && <span style={
-                {color: "green"}
-            }>* Sign up successful. Please login!</span>
-        }
+                signUpSuccess && <span style={
+                    { color: "green" }
+                }>* Sign up successful. Please login!</span>
+            }
             {
-            signUpFail && <span style={
-                {color: "red"}
-            }>
-                failed. Please try again
+                signUpFail && <span style={
+                    { color: "red" }
+                }>
+                    failed. Please try again
             </span>
-        }
-            <br/>
+            }
+            <br />
             <Button onClick={signUp}
                 className={
                     classes.cartBtn
