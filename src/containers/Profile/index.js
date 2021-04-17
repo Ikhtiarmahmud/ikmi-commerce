@@ -5,12 +5,10 @@ import Dashboard from '../../components/Admin/Dashboard';
 import {
     Grid
 } from '@material-ui/core';
-import { Route, Switch, Redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Profile = () => {
     const params = useParams();
-
-    console.log(params);
 
     let component;
 

@@ -7,18 +7,16 @@ import {
     Grid
 } from '@material-ui/core';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import banner from '../../assets/images/kj2.jpg';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import useStyles from './style';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 const Product = () => {
     const classes = useStyles();
     const history = useHistory();
-    const dispatch = useDispatch();
     const products = useSelector((state) => state.productStore.products);
 
     const getProductDetails = (id) => {
@@ -54,7 +52,7 @@ const Product = () => {
                                                 classes.media
                                             }
                                             src={product.image}
-                                            title="Contemplative Reptile"/>
+                                            title="Contemplative Reptile" alt="product"/>
                                         <CardContent>
                                             <Typography gutterBottom variant="body1" align="center">
                                                 <StarIcon/>

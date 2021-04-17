@@ -6,12 +6,11 @@ import {
     TextField,
     Button
 } from '@material-ui/core';
-import productImage from '../../assets/images/39.jpg';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import useStyles from './style';
 import DetailTab from './../Tab/index';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { StoreSelectedProduct } from './../../containers/HomePage/action';
 
@@ -20,12 +19,11 @@ const ProductDetails = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const params = useParams();
+    const product = useSelector((state) => state.productStore.selectedProduct);
 
     useEffect(() => {
         dispatch(StoreSelectedProduct(params.id));
-    }, []);
-
-    const product = useSelector((state) => state.productStore.selectedProduct);
+    }, [product]);
 
     return (
         <>
@@ -44,7 +42,7 @@ const ProductDetails = () => {
                         <img className={
                                 classes.img
                             }
-                            src={product.image}/>
+                            src={product.image} alt="product"/>
                     </CardMedia>
                 </Grid>
                 <Grid item

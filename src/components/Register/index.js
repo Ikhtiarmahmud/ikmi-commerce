@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { Typography, TextField, Button } from '@material-ui/core';
 import useStyles from './style';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userSignUp } from '../../containers/Account/action';
-import { BASE_URL } from '../../utils/constants';
 
 const Register = () => {
     const classes = useStyles();

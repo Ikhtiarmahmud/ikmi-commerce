@@ -3,15 +3,15 @@ import axios from 'axios';
 import { BASE_URL } from '../../utils/constants';
 
 export const StoreProducts = () => async(dispatch, getStore) => {    
-
-    const allProducts = await axios.get(`${BASE_URL}/products`);
+    
+    const allProducts = await axios.get(`https://fakestoreapi.com/products`);
 
     dispatch(setAllProducts(allProducts.data))    
 }
 
 export const StoreSelectedProduct = (id) => async(dispatch, getStore) => {   
     
-    const product = await axios.get(`${BASE_URL}/products/${id}`);
+    const product = await axios.get(`https://fakestoreapi.com/products/${id}`);
 
     dispatch(setSelectedProduct(product.data));
 }

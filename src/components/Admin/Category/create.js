@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { StoreCategory } from './action';
 import { useDispatch } from 'react-redux';
 
@@ -55,12 +55,12 @@ const CreateCategory = () => {
             </Grid>
             <br /> 
             {
-                status == true && <span style={
+                status === true && <span style={
                     { backgroundColor: "green", padding: "10px", color: "white" }
                 }>Category Added Successfully :) </span>
             }
             {
-                status == false &&  <span style={
+                status === false &&  <span style={
                     { backgroundColor: "red", padding: "10px", color: "white" }
                 }>Something went wrong! Please try again -_- </span>
             }

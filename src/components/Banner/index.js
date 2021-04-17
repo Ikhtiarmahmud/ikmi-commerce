@@ -20,7 +20,7 @@ const Banner = () => {
         <>
             <Grid container>
                 <Grid item xs={12} className={classes.gridItem}>
-                    <img src={banner} className={classes.image}/>
+                    <img src={banner} className={classes.image} alt="banner"/>
                 </Grid>
             </Grid>
         </>

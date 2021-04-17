@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { 
     Table,
     TableBody,
@@ -14,9 +15,15 @@ import {
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
 import { Link } from 'react-router-dom';
+import { StoreCategoryList } from './action';
 
 const CategoryList = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(StoreCategoryList());
+  }, [])
 
   return (
     <TableContainer component={Paper}>
