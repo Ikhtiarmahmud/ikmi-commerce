@@ -27,7 +27,7 @@ const Routes = () => {
               <Account />
             </Route>
 
-            <ProtectedRoute exact path="/profile/:slug?/:subSlug?">
+            <ProtectedRoute exact path="/profile/:slug?/:subSlug?/:id?">
                 <Profile />
             </ProtectedRoute>
 

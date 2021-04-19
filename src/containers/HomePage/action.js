@@ -4,7 +4,7 @@ import { BASE_URL } from '../../utils/constants';
 
 export const StoreProducts = () => async(dispatch, getStore) => {    
     
-    const allProducts = await axios.get(`https://fakestoreapi.com/products`);
+    const allProducts = await axios.get(`${BASE_URL}/products`);
 
     dispatch(setAllProducts(allProducts.data))    
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
     Table,
@@ -14,12 +14,21 @@ import {
 } from '@material-ui/core';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
+import { DeleteProduct } from "./action";
 import { Link } from 'react-router-dom';
+import Message from '../../Message';
 
 const ProductList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const products = useSelector(state => state.productStore.products);
+  const [status, setStatus] = useState(null)
+
+  const deleteHandler = (id) => {
+    dispatch(DeleteProduct(id))
+            .then(() => setStatus(true))
+            .catch(() => setStatus(false))
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -38,6 +47,7 @@ const ProductList = () => {
           </Typography>
           <div style={{padding:"15px"}}><Link className={classes.link} to="/profile/product/create"><Button className={classes.cartBtn} variant="contained">Create</Button></Link></div>
         </Grid>
+        <Message status={status}/>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -57,7 +67,7 @@ const ProductList = () => {
                   <TableCell align="right">&nbsp;&nbsp;{product.title}</TableCell>
                   <TableCell align="right">{product.description}</TableCell>
                   <TableCell align="right">{product.price}</TableCell>
-                  <TableCell align="right">Edit</TableCell>
+                  <TableCell align="right"><Button  onClick={() => deleteHandler(product._id)}>Delete</Button></TableCell>
                 </TableRow>
             )
             })

@@ -20,11 +20,7 @@ const CreateProduct = () => {
     const [productData, setProductData] = useState({})
 
     const SubmitHandler = () => {
-        // dispatch(StoreCategory(categoryData))
-        //     .then(() => {
-        //         setStatus(true)
-        //     })
-        //     .catch(() => setStatus(false))
+
     }
 
     return (
