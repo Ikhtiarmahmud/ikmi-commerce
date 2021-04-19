@@ -12,6 +12,7 @@ import useStyles from './style';
 import { Link } from 'react-router-dom';
 import { StoreCategory } from './action';
 import { useDispatch } from 'react-redux';
+import Message from '../../Message';
 
 const CreateCategory = () => {
     const classes = useStyles();
@@ -54,16 +55,9 @@ const CreateCategory = () => {
                 </div>
             </Grid>
             <br /> 
-            {
-                status === true && <span style={
-                    { backgroundColor: "green", padding: "10px", color: "white" }
-                }>Category Added Successfully :) </span>
-            }
-            {
-                status === false &&  <span style={
-                    { backgroundColor: "red", padding: "10px", color: "white" }
-                }>Something went wrong! Please try again -_- </span>
-            }
+
+            <Message status={status} />
+
             <div className={
                     classes.table
                 }

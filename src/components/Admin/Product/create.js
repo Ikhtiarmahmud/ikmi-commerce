@@ -11,6 +11,7 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Message from '../../Message';
 
 const CreateProduct = () => {
     const classes = useStyles();
@@ -53,16 +54,9 @@ const CreateProduct = () => {
                 </div>
             </Grid>
             <br /> 
-            {
-                status === true && <span style={
-                    { backgroundColor: "green", padding: "10px", color: "white" }
-                }>Product Added Successfully :) </span>
-            }
-            {
-                status === false &&  <span style={
-                    { backgroundColor: "red", padding: "10px", color: "white" }
-                }>Something went wrong! Please try again -_- </span>
-            }
+            
+            <Message status={status}/>
+
             <div className={
                     classes.table
                 }
@@ -86,6 +80,12 @@ const CreateProduct = () => {
                     <TextField label="description" onChange={(e) => setProductData(state => ({
                         ...state,
                         description: e.target.value
+                    }))}/>
+                </div>
+                <div>
+                    <TextField label="stock" onChange={(e) => setProductData(state => ({
+                        ...state,
+                        stock: e.target.value
                     }))}/>
                 </div>
                 <div>
