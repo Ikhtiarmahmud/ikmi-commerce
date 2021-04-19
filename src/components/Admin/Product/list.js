@@ -17,6 +17,7 @@ import useStyles from './style';
 import { DeleteProduct } from "./action";
 import { Link } from 'react-router-dom';
 import Message from '../../Message';
+import { DELETED_MESSAGE, ERROR_MESSAGE } from './../../../utils/constants';
 
 const ProductList = () => {
   const classes = useStyles();
@@ -29,6 +30,8 @@ const ProductList = () => {
             .then(() => setStatus(true))
             .catch(() => setStatus(false))
   }
+
+  let message = status === true ? DELETED_MESSAGE : ERROR_MESSAGE;
 
   return (
     <TableContainer component={Paper}>
@@ -47,7 +50,7 @@ const ProductList = () => {
           </Typography>
           <div style={{padding:"15px"}}><Link className={classes.link} to="/profile/product/create"><Button className={classes.cartBtn} variant="contained">Create</Button></Link></div>
         </Grid>
-        <Message status={status}/>
+        <Message status={status} message={message}/>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>

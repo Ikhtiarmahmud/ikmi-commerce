@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { StoreCategory } from './action';
 import { useDispatch } from 'react-redux';
 import Message from '../../Message';
+import { ADDED_MESSAGE, ERROR_MESSAGE } from './../../../utils/constants';
 
 const CreateCategory = () => {
     const classes = useStyles();
@@ -22,11 +23,11 @@ const CreateCategory = () => {
 
     const SubmitHandler = () => {
         dispatch(StoreCategory(categoryData))
-            .then(() => {
-                setStatus(true)
-            })
+            .then(() => setStatus(true))
             .catch(() => setStatus(false))
     }
+
+    let message = status === true ? ADDED_MESSAGE : ERROR_MESSAGE;
 
     return (
         <TableContainer component={Paper}>
@@ -56,7 +57,7 @@ const CreateCategory = () => {
             </Grid>
             <br /> 
 
-            <Message status={status} />
+            <Message status={status} message={message}/>
 
             <div className={
                     classes.table

@@ -9,12 +9,12 @@ const Message = (props) => {
             {
                 status === true && <span style={
                     { backgroundColor: "green", padding: "10px", color: "white" }
-                }>Data Added Successfully :) </span>
+                }>{props.message} </span>
             }
             {
                 status === false &&  <span style={
                     { backgroundColor: "red", padding: "10px", color: "white" }
-                }>Something went wrong -_-  Please try again </span>
+                }>{props.message}</span>
             }
         </>
     )
