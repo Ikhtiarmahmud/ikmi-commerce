@@ -30,7 +30,7 @@ const CategoryList = () => {
 
   useEffect(() => {
     dispatch(StoreCategoryList());
-  }, [])
+  }, [status])
 
   const categories = useSelector(state => state.categoryStore.categories)
  
