@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
-import { DeleteProduct } from "./action";
+import { DeleteProduct, GetProducts } from "./action";
 import { Link } from 'react-router-dom';
 import Message from '../../Message';
 import { DELETED_MESSAGE, ERROR_MESSAGE } from './../../../utils/constants';
@@ -22,8 +22,13 @@ import { DELETED_MESSAGE, ERROR_MESSAGE } from './../../../utils/constants';
 const ProductList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const products = useSelector(state => state.productStore.products);
+  const products = useSelector(state => state.AdminProductStore.products);
   const [status, setStatus] = useState(null)
+
+
+  useEffect(() => {
+      dispatch(GetProducts());
+  }, [status]);
 
   const deleteHandler = (id) => {
     dispatch(DeleteProduct(id))

@@ -30,7 +30,10 @@ const useStyles = makeStyles({
     "& div": {
       marginBottom: "10px"
     }
-  }
+  },
+  formControl: {
+        width: "330px"
+    }
   });
 
 export default useStyles;
