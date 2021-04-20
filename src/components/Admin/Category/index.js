@@ -1,24 +1,17 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Route, Switch  } from 'react-router-dom';
 import CategoryList from './list';
 import CreateCategory from './create';
 
 const Category = () => {
-  const params = useParams();
-
-  let loadableData;
-
-  switch(params.subSlug){
-    case "create":
-      loadableData = (<CreateCategory />);
-      break;
-    default:
-      loadableData = (<CategoryList />)
-  }
-
   return (
     <>
-      { loadableData }
+        <Route exact path="/profile/category">
+            <CategoryList />
+        </Route>
+        <Route path="/profile/category/create">
+            <CreateCategory />
+        </Route>
     </>
   );
 }

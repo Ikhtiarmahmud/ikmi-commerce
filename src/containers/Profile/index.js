@@ -6,23 +6,9 @@ import Product from '../../components/Admin/Product';
 import {
     Grid
 } from '@material-ui/core';
-import { useParams } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 const Profile = () => {
-    const params = useParams();
-
-    let component;
-
-    switch (params.slug) {
-        case "category":
-            component = (<Category />);
-            break;
-        case "product":
-            component = (<Product />)
-            break;
-        default:
-            component = (<Dashboard />);
-    }
 
     return (
         <Grid style={{
@@ -36,8 +22,16 @@ const Profile = () => {
            <Grid item
                  md={10}
                  xs={12}
-                 sm={8}>   
-                {component}
+                 sm={8}>
+                <Route exact path="/profile">
+                    <Dashboard />
+                </Route>
+                <Route path="/profile/category">
+                    <Category />
+                </Route>
+                <Route path="/profile/product">
+                    <Product />
+                </Route>
            </Grid>
         </Grid>
        

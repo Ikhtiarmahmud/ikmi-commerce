@@ -29,7 +29,7 @@ const Sidebar = () => {
                         className={
                             classes.item
                         }>
-                        <MenuItem onClick={() => loadComponent('dashboard')}>Dashboard</MenuItem>
+                        <MenuItem onClick={() => loadComponent('')}>Dashboard</MenuItem>
                         <MenuItem onClick={() => loadComponent('category')}>Category</MenuItem>
                         <MenuItem onClick={() => loadComponent('product')}>Product</MenuItem>
                         <MenuItem>Order</MenuItem>
