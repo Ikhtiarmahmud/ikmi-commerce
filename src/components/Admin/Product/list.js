@@ -15,13 +15,14 @@ import {
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
 import { DeleteProduct, GetProducts } from "./action";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Message from '../../Message';
 import { DELETED_MESSAGE, ERROR_MESSAGE } from './../../../utils/constants';
 
 const ProductList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const products = useSelector(state => state.AdminProductStore.products);
   const [status, setStatus] = useState(null)
 
@@ -34,6 +35,10 @@ const ProductList = () => {
     dispatch(DeleteProduct(id))
             .then(() => setStatus(true))
             .catch(() => setStatus(false))
+  }
+
+  const editHandler = (id) => {
+    history.push(`/profile/product/edit/${id}`);
   }
 
   let message = status === true ? DELETED_MESSAGE : ERROR_MESSAGE;
@@ -75,7 +80,7 @@ const ProductList = () => {
                   <TableCell align="right">&nbsp;&nbsp;{product.title}</TableCell>
                   <TableCell align="right">{product.description}</TableCell>
                   <TableCell align="right">{product.price}</TableCell>
-                  <TableCell align="right"><Button  onClick={() => deleteHandler(product._id)}>Delete</Button></TableCell>
+                  <TableCell align="right"><Button  onClick={() => editHandler(product._id)}>Edit</Button> | <Button  onClick={() => deleteHandler(product._id)}>Delete</Button></TableCell>
                 </TableRow>
             )
             })
