@@ -40,8 +40,7 @@ export const StoreProduct = (data) => async() => {
 }
 
 export const UpdateProduct = (data) => async() => {
-
-    return await axios.patch(`${BASE_URL}/products/${data.id}`, data, {
+    return await axios.patch(`${BASE_URL}/products/${data._id}`, data, {
         headers: {
             Accept: "application/json",
             Authorization: `bearer ${AUTH_TOKEN}`,

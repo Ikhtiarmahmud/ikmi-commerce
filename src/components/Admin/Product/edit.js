@@ -15,6 +15,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../Message';
 import { GetCategories, GetSingleProduct, UpdateProduct } from './action';
+import { StoreCategoryList } from './../Category/action';
 import { UPDATED_MESSAGE, ERROR_MESSAGE } from '../../../utils/constants';
 
 const EditProduct = () => {
@@ -22,35 +23,24 @@ const EditProduct = () => {
     const params = useParams();
     const dispatch = useDispatch();
     const [status, setStatus] = useState();
-    const [categories, setCategories] = useState([]);
+    const { categories } = useSelector(state => state.categoryStore);
     const product = useSelector(state => state.AdminProductStore.singleProduct);
     const [productData, setProductData] = useState({});
-    // const [productData, setProductData] = useState({
-    //     id: product._id,
-    //     title: product.title,
-    //     price: product.price,
-    //     description: product.description,
-    //     stock: product.stock,
-    //     image: product.image
-    // })
 
-
-    const SubmitHandler = () => {
-        dispatch(UpdateProduct(productData))
+    const SubmitHandler = (id) => {
+        dispatch(UpdateProduct(productData, id))
             .then(() => setStatus(true))
             .catch(err => setStatus(false))
     }
 
     useEffect(() => {
         dispatch(GetSingleProduct(params.id))
-        setProductData(product);
+        dispatch(StoreCategoryList())
     }, [])
 
     useEffect(() => {
-        dispatch(GetCategories())
-            .then((res) => setCategories(res.data))
-            .catch(err => console.log(err))
-    }, [])
+        setProductData(product)
+    }, [product])
 
     const handleChange = (event) => {
         setProductData(state => ({

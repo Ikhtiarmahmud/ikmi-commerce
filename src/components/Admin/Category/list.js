@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { StoreCategoryList, DeleteCategory } from './action';
 import Message from '../../Message';
 import { DELETED_MESSAGE, ERROR_MESSAGE } from './../../../utils/constants';
@@ -22,6 +22,7 @@ import { DELETED_MESSAGE, ERROR_MESSAGE } from './../../../utils/constants';
 const CategoryList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const [status, setStatus] = useState(null);
 
   const deleteHanlder = (id) => {
@@ -31,6 +32,10 @@ const CategoryList = () => {
   useEffect(() => {
     dispatch(StoreCategoryList());
   }, [status])
+
+  const editHandler = (id) => {
+    history.push(`/profile/category/edit/${id}`);
+  }
 
   const categories = useSelector(state => state.categoryStore.categories)
  
@@ -69,7 +74,7 @@ const CategoryList = () => {
               <TableCell component="th" scope="row">{index+1}</TableCell>
               <TableCell align="right">&nbsp;&nbsp;{row.name}</TableCell>
               <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right"><Button>Edit</Button> | <Button onClick={() => deleteHanlder(row._id)}>Delete</Button></TableCell>
+              <TableCell align="right"><Button onClick={() => editHandler(row._id)}>Edit</Button> | <Button onClick={() => deleteHanlder(row._id)}>Delete</Button></TableCell>
             </TableRow>
            ))}
         </TableBody>

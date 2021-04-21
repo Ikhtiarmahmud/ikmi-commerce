@@ -68,6 +68,7 @@ const ProductList = () => {
             <TableCell align="right">Title</TableCell>
             <TableCell align="right">Description</TableCell>
             <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Stock</TableCell>
             <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
@@ -80,6 +81,7 @@ const ProductList = () => {
                   <TableCell align="right">&nbsp;&nbsp;{product.title}</TableCell>
                   <TableCell align="right">{product.description}</TableCell>
                   <TableCell align="right">{product.price}</TableCell>
+                  <TableCell align="right">{product.stock}</TableCell>
                   <TableCell align="right"><Button  onClick={() => editHandler(product._id)}>Edit</Button> | <Button  onClick={() => deleteHandler(product._id)}>Delete</Button></TableCell>
                 </TableRow>
             )
