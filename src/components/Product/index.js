@@ -85,7 +85,7 @@ const Product = () => {
                                                 }
                                                 gutterBottom
                                                 variant="subtitle2"
-                                                align="center" onClick={() => getProductDetails(product.id)}>
+                                                align="center" onClick={() => getProductDetails(product._id)}>
                                                 ADD TO CART
                                                 <span><ArrowForwardIosIcon/><ArrowForwardIosIcon/></span>
                                             </Typography>

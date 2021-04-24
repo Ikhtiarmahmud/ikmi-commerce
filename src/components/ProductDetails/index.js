@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Typography,
     CardMedia,
@@ -13,19 +13,44 @@ import useStyles from './style';
 import DetailTab from './../Tab/index';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { UPDATED_MESSAGE, ERROR_MESSAGE } from './../../utils/constants';
 import { StoreSelectedProduct } from './../../containers/HomePage/action';
+import { GetCartItems, UpdateCart } from "./../../containers/Cart/action";
+import Message from './../../components/Message';
+import { isAuthenticated } from './../../utils/auth';
 
 
 const ProductDetails = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const params = useParams();
+    const [cartItem, setCartItem] = useState(0);
+    const [validate, setValidate] = useState(null);
+    const [status, setStatus] = useState();
+    const product = useSelector((state) => state.productStore.selectedProduct);
 
     useEffect(() => {
         dispatch(StoreSelectedProduct(params.id));
     }, []);
 
-    const product = useSelector((state) => state.productStore.selectedProduct);
+    const cartHandler = (id) => {
+        if(!isAuthenticated()) {
+            setValidate('Please Login First!');
+        } else if (isNaN(cartItem) || cartItem <= 0) {
+            setValidate('Please put valid quantity number');
+        }
+        else {
+            setValidate(null);
+
+            dispatch(UpdateCart(id, cartItem)).then(() => setStatus(true)).catch((err) => {
+                setStatus(false)
+                console.log(err.message);
+            });
+        }
+    }
+
+    let message = status === true ? UPDATED_MESSAGE : ERROR_MESSAGE;
+    
 
     return (
         <>
@@ -90,17 +115,22 @@ const ProductDetails = () => {
                     <Typography gutterBottom variant="subtitle1" align="left">
                         Get 50% offer from your first order
                     </Typography>
+                    <Message status={status} message={message}/>
                     <Grid style={{marginTop:"2rem"}} container
                             direction="row"
                             justify="flex-start"
                             alignItems="center">
                         <Grid>
-                            <TextField className={classes.cartInput} id="outlined-basic"  variant="filled" placeholder="Total Item"/>
+                            <TextField onChange={(e) => setCartItem(e.target.value)} className={classes.cartInput} id="outlined-basic" placeholder="Total Item"/>
                         </Grid>
                         <Grid>
-                             <Button className={classes.cartBtn} variant="contained">ADD TO CART</Button>
+                             <Button onClick={() => cartHandler(product._id)} className={classes.cartBtn} variant="contained">ADD TO CART</Button>
                         </Grid>
+                       
                     </Grid>
+                    {
+                        validate !== null && <p style={{color:"red"}}>* {validate}</p>
+                    }
                 </Grid>
                 <Grid item xs={12} md={12} sm={12}>
                     <DetailTab description={product.description}/>

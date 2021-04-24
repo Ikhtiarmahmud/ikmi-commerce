@@ -4,6 +4,8 @@ import ProductDetails from '../components/ProductDetails'
 import PageNotFound from '../components/PageNotFound';
 import Account from '../containers/Account';
 import ProtectedRoute from './ProtectedRoute';
+import Profile from '../containers/Profile';
+import Cart from '../containers/Cart';
 import { Route, Switch, Redirect} from 'react-router-dom';
 
 const Routes = () => {
@@ -28,6 +30,10 @@ const Routes = () => {
 
             <ProtectedRoute exact path="/profile">
                 <p style={{padding: "50px"}}>This is your profile</p>
+            </ProtectedRoute>
+
+            <ProtectedRoute path="/cart">
+                <Cart />
             </ProtectedRoute>
 
             <Route path={'*'} render={() => <Redirect to={'/404'} />} />
