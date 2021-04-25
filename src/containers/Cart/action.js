@@ -11,7 +11,7 @@ export const GetCartItems = () => async(dispatch) => {
             }
     });
 
-    dispatch(SetCartItems(items.data.products))    
+    dispatch(SetCartItems(items.data))    
 }
 
 const SetCartItems = (data) => {
@@ -23,12 +23,10 @@ const SetCartItems = (data) => {
 
 export const UpdateCart = (id, quantity) => async(dispatch, getStore) => {
     const store = getStore();
-    const products = store.cartStore.cartItems;
-    console.log(products)
-    const product = await products.length ? products.find(product => product.productId._id === id ? product : {}) : {}; 
-    // console.log(product);
+    const cartItems = store.cartStore.cartItems;
+    const product = Object.keys(cartItems).length !== 0 ? cartItems.products.find(product => product.productId._id === id) : {};
 
-    const currentQty = Object.keys(product).length === 0 ? 0 : product.quantity;
+    const currentQty = product === undefined || Object.keys(product).length === 0 ? 0 : product.quantity;
 
     const data = {
         "product" : {

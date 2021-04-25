@@ -31,6 +31,7 @@ const ProductDetails = () => {
 
     useEffect(() => {
         dispatch(StoreSelectedProduct(params.id));
+        dispatch(GetCartItems());
     }, []);
 
     const cartHandler = (id) => {

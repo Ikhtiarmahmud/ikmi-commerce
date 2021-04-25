@@ -29,7 +29,7 @@ const Cart = () => {
 
     useEffect(() => {
         dispatch(GetCartItems());
-    }, [status]);
+    }, []);
 
     // const viewHandler = (id) => {
     //      history.push(`/details/${id}`);
@@ -37,7 +37,6 @@ const Cart = () => {
 
     let message = status === true ? DELETED_MESSAGE : ERROR_MESSAGE;
 
-    console.log(cartItems);
     return (
       <Grid className={classes.grid} container spacing={3}>
                 <Grid item
@@ -73,7 +72,7 @@ const Cart = () => {
                     </TableHead>
                     <TableBody> 
                         {
-                            cartItems.map(({productId, quantity}, index) => {
+                            Object.keys(cartItems).length !== 0 && cartItems.products.map(({productId, quantity}, index) => {
                                 // setGrandTotal(grandTotal + quantity * productId.price)
                                 return (
                                     <TableRow>
