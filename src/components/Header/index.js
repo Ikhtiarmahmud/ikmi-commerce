@@ -57,12 +57,14 @@ const Header = () => {
                     }>
                         <FavoriteBorderIcon className={classes.font30} />
                     </Link>
-                    <Link variant="button" color="textPrimary" href="#"
-                        className={
-                            classes.link
-                    }>
-                        <AddShoppingCartIcon className={classes.font30}/>
-                    </Link>
+                    <RouteLink className={classes.routerLink} to="/cart">
+                        <Link variant="button" color="textPrimary" href="#"
+                            className={
+                                classes.link
+                        }>
+                            <AddShoppingCartIcon className={classes.font30}/>
+                        </Link>
+                    </RouteLink>
                     <Link variant="button" color="textPrimary" href="#"
                         className={
                             classes.link

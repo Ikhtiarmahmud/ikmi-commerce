@@ -5,6 +5,7 @@ import PageNotFound from '../components/PageNotFound';
 import Account from '../containers/Account';
 import ProtectedRoute from './ProtectedRoute';
 import Profile from '../containers/Profile';
+import Cart from '../containers/Cart';
 import { Route, Switch, Redirect} from 'react-router-dom';
 
 const Routes = () => {
@@ -29,6 +30,10 @@ const Routes = () => {
 
             <ProtectedRoute path="/profile">
                 <Profile />
+            </ProtectedRoute>
+
+            <ProtectedRoute path="/cart">
+                <Cart />
             </ProtectedRoute>
 
             <Route path={'*'} render={() => <Redirect to={'/404'} />} />
