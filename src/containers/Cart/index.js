@@ -29,11 +29,22 @@ const Cart = () => {
 
     useEffect(() => {
         dispatch(GetCartItems());
+        grandTotalPrice();
     }, []);
 
-    // const viewHandler = (id) => {
-    //      history.push(`/details/${id}`);
-    // }
+    useEffect(() => {
+        grandTotalPrice();
+    }, [cartItems])
+
+    const grandTotalPrice = () => {
+        if (Object.keys(cartItems).length !== 0) {
+            const total = cartItems.products.reduce((total, item) => {
+                 return total + (Number(item.productId.price) * Number(item.quantity))
+             }, 0)
+ 
+             setGrandTotal(total)
+         }
+    }
 
     let message = status === true ? DELETED_MESSAGE : ERROR_MESSAGE;
 
@@ -92,12 +103,18 @@ const Cart = () => {
                             <TableCell align="right">Grand Total</TableCell>
                             <TableCell align="right">{grandTotal}</TableCell>
                         </TableRow>
+                        <TableRow>
+                            <TableCell component="th" scope="row"></TableCell>
+                            <TableCell align="right"></TableCell>
+                            <TableCell align="right"></TableCell>
+                            <TableCell align="right"></TableCell>
+                            <TableCell align="right"><Button className={classes.cartBtn} variant="contained">CHECK OUT</Button></TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
             </TableContainer>
         </Grid>
       </Grid>
-
     );
 }
 
