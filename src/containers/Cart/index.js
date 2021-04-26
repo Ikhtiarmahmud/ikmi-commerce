@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
-import { GetCartItems, UpdateCart } from "./action";
+import { GetCartItems, CheckOut } from "./action";
 import {Link, useHistory} from 'react-router-dom';
 import Message from './../../components/Message';
 import {DELETED_MESSAGE, ERROR_MESSAGE} from './../../utils/constants';
@@ -26,11 +26,16 @@ const Cart = () => {
     const [grandTotal, setGrandTotal] = useState(0);
     const cartItems   = useSelector(state => state.cartStore.cartItems);
     const [status, setStatus] = useState(null)
+    const [orderStatus, setOrderStatus] = useState(false);
 
     useEffect(() => {
         dispatch(GetCartItems());
         grandTotalPrice();
     }, []);
+
+    useEffect(() => {
+        dispatch(GetCartItems());
+    }, [orderStatus]);
 
     useEffect(() => {
         grandTotalPrice();
@@ -46,6 +51,14 @@ const Cart = () => {
          }
     }
 
+    const checkoutHandler = () => {
+        alert('Are you sure to checkout?')
+        dispatch(CheckOut()).then(() =>  {
+            setOrderStatus(true)
+            setGrandTotal(0)
+        }).catch(() => setOrderStatus(false));
+    }
+
     let message = status === true ? DELETED_MESSAGE : ERROR_MESSAGE;
 
     return (
@@ -54,6 +67,11 @@ const Cart = () => {
             md={12}
             xs={12}
             sm={12}>
+           {
+               orderStatus &&  <div style={{backgroundColor: "#14472e", padding:"15px", color:"white"}}>
+               Thank you for your order !
+           </div>
+           }
             <TableContainer component={Paper}>
                 <Grid container direction="row" justify="space-between" alignItems="flex-start">
                     <Typography className={
@@ -108,7 +126,7 @@ const Cart = () => {
                             <TableCell align="right"></TableCell>
                             <TableCell align="right"></TableCell>
                             <TableCell align="right"></TableCell>
-                            <TableCell align="right"><Button className={classes.cartBtn} variant="contained">CHECK OUT</Button></TableCell>
+                            <TableCell align="right"><Button onClick={checkoutHandler} className={classes.cartBtn} variant="contained">CHECK OUT</Button></TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

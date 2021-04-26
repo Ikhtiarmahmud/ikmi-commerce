@@ -1,6 +1,7 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import ProductReducer from './../containers/HomePage/reducer';
 import CartReducer from './../containers/Cart/reducer';
+import OrderReducer from './../components/Admin/Order/reducer';
 import CategoryReducer from './../components/Admin/Category/reducer';
 import AdminProductReducer from './../components/Admin/Product/reducer';
 import thunk from 'redux-thunk';
@@ -9,6 +10,7 @@ const mainReducer = combineReducers({
         productStore : ProductReducer,
         categoryStore : CategoryReducer,
         cartStore : CartReducer,
+        orderStore : OrderReducer,
         AdminProductStore : AdminProductReducer,
     })
 

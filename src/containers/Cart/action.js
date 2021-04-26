@@ -42,3 +42,12 @@ export const UpdateCart = (id, quantity) => async(dispatch, getStore) => {
         }
     });
 }
+
+export const CheckOut = () => async() => {
+    return await axios.get(`${BASE_URL}/order/checkout`, {
+        headers: {
+            Accept: "application/json",
+            Authorization: `bearer ${AUTH_TOKEN}`,
+        }
+    });
+}
