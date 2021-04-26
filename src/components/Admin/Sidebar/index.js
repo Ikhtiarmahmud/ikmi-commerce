@@ -32,7 +32,7 @@ const Sidebar = () => {
                         <MenuItem onClick={() => loadComponent('')}>Dashboard</MenuItem>
                         <MenuItem onClick={() => loadComponent('category')}>Category</MenuItem>
                         <MenuItem onClick={() => loadComponent('product')}>Product</MenuItem>
-                        <MenuItem>Order</MenuItem>
+                        <MenuItem onClick={() => loadComponent('orders')}>Order</MenuItem>
                         <MenuItem>User</MenuItem>
                     </Grid>
                 </Toolbar>

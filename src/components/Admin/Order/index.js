@@ -18,7 +18,6 @@ import Message from '../../Message';
 import { DELETED_MESSAGE, ERROR_MESSAGE } from './../../../utils/constants';
 
 const OrderList = () => {
-  console.log('dsaf')
   const classes = useStyles();
   const dispatch = useDispatch();
   const [status, setStatus] = useState(null);

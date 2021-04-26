@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from '../../components/Admin/Sidebar';
 import Category from '../../components/Admin/Category';
+import OrderList from '../../components/Admin/Order';
 import Dashboard from '../../components/Admin/Dashboard';
 import Product from '../../components/Admin/Product';
 import {
@@ -31,6 +32,9 @@ const Profile = () => {
                 </Route>
                 <Route path="/profile/product">
                     <Product />
+                </Route>
+                <Route exact path="/profile/orders">
+                    <OrderList />
                 </Route>
            </Grid>
         </Grid>
