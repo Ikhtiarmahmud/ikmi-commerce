@@ -1,6 +1,8 @@
 import React from 'react';
 import Sidebar from '../../components/Admin/Sidebar';
 import Category from '../../components/Admin/Category';
+import User from '../../components/Admin/User';
+import AdminProtectedRoute from '../../utils/AdminProtectedRoute';
 import OrderList from '../../components/Admin/Order';
 import Dashboard from '../../components/Admin/Dashboard';
 import Product from '../../components/Admin/Product';
@@ -24,18 +26,26 @@ const Profile = () => {
                  md={10}
                  xs={12}
                  sm={8}>
+                     
                 <Route exact path="/profile">
                     <Dashboard />
                 </Route>
-                <Route path="/profile/category">
+
+                <AdminProtectedRoute path="/profile/category">
                     <Category />
-                </Route>
-                <Route path="/profile/product">
+                </AdminProtectedRoute>
+
+                <AdminProtectedRoute path="/profile/product">
                     <Product />
-                </Route>
-                <Route exact path="/profile/orders">
+                </AdminProtectedRoute>
+
+                <AdminProtectedRoute exact path="/profile/orders">
                     <OrderList />
-                </Route>
+                </AdminProtectedRoute>
+
+                <AdminProtectedRoute path="/profile/users">
+                    <User />
+                </AdminProtectedRoute>
            </Grid>
         </Grid>
        

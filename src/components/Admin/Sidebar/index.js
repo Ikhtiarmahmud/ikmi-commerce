@@ -2,6 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
+import { isAdmin, isUser } from '../../../utils/auth';
 import MenuItem from '@material-ui/core/MenuItem';
 import  useStyles  from './style';
 import { useHistory } from 'react-router-dom';
@@ -30,10 +31,21 @@ const Sidebar = () => {
                             classes.item
                         }>
                         <MenuItem onClick={() => loadComponent('')}>Dashboard</MenuItem>
-                        <MenuItem onClick={() => loadComponent('category')}>Category</MenuItem>
-                        <MenuItem onClick={() => loadComponent('product')}>Product</MenuItem>
-                        <MenuItem onClick={() => loadComponent('orders')}>Order</MenuItem>
-                        <MenuItem>User</MenuItem>
+                        {
+                            isAdmin() && <>
+                            <MenuItem onClick={() => loadComponent('category')}>Category</MenuItem>
+                            <MenuItem onClick={() => loadComponent('product')}>Product</MenuItem>
+                            <MenuItem onClick={() => loadComponent('orders')}>Order</MenuItem>
+                            <MenuItem onClick={() => loadComponent('users')}>User</MenuItem>
+                            </>
+                        }
+                        {
+                            isUser() && <>
+                            <MenuItem>Orders</MenuItem>
+                            <MenuItem>My Details</MenuItem>
+                            </>
+                        }
+                       
                     </Grid>
                 </Toolbar>
             </AppBar>
