@@ -10,6 +10,7 @@ import {
     Paper,
     Typography,
     Grid,
+    Button
 } from '@material-ui/core';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import useStyles from './style';
@@ -51,20 +52,20 @@ const OrderList = () => {
         <TableHead>
           <TableRow>
             <TableCell>Sl</TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Description</TableCell>
+            <TableCell align="right">Order Date</TableCell>
+            <TableCell align="right">Total Product</TableCell>
             <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* { categories.map((row, index) => (
+          { orders.map((row, index) => (
             <TableRow>
               <TableCell component="th" scope="row">{index+1}</TableCell>
-              <TableCell align="right">&nbsp;&nbsp;{row.name}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right"><Button>Edit</Button> | <Button onClick={() => deleteHanlder(row._id)}>Delete</Button></TableCell>
+              <TableCell align="right">&nbsp;&nbsp;{row.date}</TableCell>
+              <TableCell align="right">{row.products.length}</TableCell>
+              <TableCell align="right"><Button>View</Button></TableCell>
             </TableRow>
-           ))} */}
+           ))}
         </TableBody>
       </Table>
     </TableContainer>
