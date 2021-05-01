@@ -27,7 +27,12 @@ export const StoreUser = (data) => async() => {
 }
 
 export const GetSingleUser = (id) => async(dispatch) => {
-    const user = await axios.get(`${BASE_URL}/user/${id}`);
+    const user = await axios.get(`${BASE_URL}/user/${id}`, {
+        headers: {
+            Accept: "application/json",
+            Authorization: `bearer ${AUTH_TOKEN}`,
+        }
+    });
 
     dispatch({
         type: GET_SINGLE_USER,
@@ -35,8 +40,8 @@ export const GetSingleUser = (id) => async(dispatch) => {
     })
 }
 
-export const UpdateUserData = (data) => async() => {
-    return await axios.patch(`${BASE_URL}/user/${data._id}`, data, {
+export const UpdateUserData = (data, id) => async() => {
+    return await axios.patch(`${BASE_URL}/user/${id}`, data, {
         headers: {
             Accept: "application/json",
             Authorization: `bearer ${AUTH_TOKEN}`,

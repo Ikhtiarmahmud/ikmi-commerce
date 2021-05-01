@@ -34,7 +34,7 @@ const UserList = () => {
   }, [status])
 
   const editHandler = (id) => {
-    history.push(`/profile/user/edit/${id}`);
+    history.push(`/profile/users/edit/${id}`);
   }
 
   const users = useSelector(state => state.usersStore.users)
