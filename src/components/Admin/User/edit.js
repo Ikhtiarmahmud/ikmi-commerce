@@ -153,6 +153,7 @@ const EditUser = () => {
                                     name: 'age',
                                     id: 'outlined-age-native-simple',
                                 }}
+                                value={userData.role}
                                 >
                                 <option>Select One</option>
                                 <option key="user" value="user">User</option>
@@ -164,7 +165,7 @@ const EditUser = () => {
 
             <Grid container direction="row" justify="flex-start" alignItems="center">
                     <div className={classes.ml2}>
-                        <TextField placeholder="City" onChange={(e) => setUserData(state => ({
+                        <TextField placeholder="City" value={userData.address ? userData.address.city : ''} onChange={(e) => setUserData(state => ({
                             ...state,
                             address: {
                                 ...state.address,
@@ -173,7 +174,7 @@ const EditUser = () => {
                         }))}/>
                     </div>
                     <div>
-                        <TextField placeholder="Street" onChange={(e) => setUserData(state => ({
+                        <TextField placeholder="Street" value={userData.address ? userData.address.street : ''} onChange={(e) => setUserData(state => ({
                             ...state,
                             address: {
                                 ...state.address,
@@ -185,7 +186,7 @@ const EditUser = () => {
 
             <Grid container direction="row" justify="flex-start" alignItems="center">
                     <div className={classes.ml2}>
-                        <TextField placeholder="House Number" onChange={(e) => setUserData(state => ({
+                        <TextField placeholder="House Number" value={userData.address ? userData.address.number : ''} onChange={(e) => setUserData(state => ({
                             ...state,
                             address: {
                                 ...state.address,
@@ -194,7 +195,7 @@ const EditUser = () => {
                         }))}/>
                     </div>
                     <div>
-                        <TextField placeholder="Zip Code" onChange={(e) => setUserData(state => ({
+                        <TextField placeholder="Zip Code" value={userData.address ? userData.address.zipcode : ''} onChange={(e) => setUserData(state => ({
                             ...state,
                             address: {
                                 ...state.address,

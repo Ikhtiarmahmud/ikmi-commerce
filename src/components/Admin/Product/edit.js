@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../Message';
 import { GetCategories, GetSingleProduct, UpdateProduct } from './action';
 import { StoreCategoryList } from './../Category/action';
+import { BASE_URL } from '../../../utils/constants';
 import { UPDATED_MESSAGE, ERROR_MESSAGE } from '../../../utils/constants';
 
 const EditProduct = () => {
@@ -126,7 +127,6 @@ const EditProduct = () => {
                 </div>
                 <div>
                 <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="outlined-age-native-simple">Category</InputLabel>
                     <Select
                     native
                     onChange={handleChange}
@@ -135,8 +135,9 @@ const EditProduct = () => {
                         name: 'age',
                         id: 'outlined-age-native-simple',
                     }}
+                    value={productData.category ? productData.category._id  : ''}
                     >
-                    <option aria-label="None" value="" />
+                    <option aria-label="None" value="">Select Category</option>
                     {
                         categories.map(category => {
                             return (
@@ -149,6 +150,11 @@ const EditProduct = () => {
                 </div>
                 <div>
                     <input type="file" onChange={encodeImageFileAsURL}/>
+                </div>
+                <div>
+                <img style={{width: "200px", height: "100px"}}
+                    src={`${BASE_URL}${product.image}`}
+                    title="Contemplative Reptile" alt="product"/>
                 </div>
                 <div>
                     <Button className={

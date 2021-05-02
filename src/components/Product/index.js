@@ -10,6 +10,7 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { BASE_URL } from '../../utils/constants';
 import useStyles from './style';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -51,7 +52,7 @@ const Product = () => {
                                         <img className={
                                                 classes.media
                                             }
-                                            src={product.image}
+                                            src={`${BASE_URL}${product.image}`}
                                             title="Contemplative Reptile" alt="product"/>
                                         <CardContent>
                                             <Typography gutterBottom variant="body1" align="center">
